@@ -1,6 +1,5 @@
-class Predator extends LivingCreature  {
+class Predator {
     constructor(x, y) {
-        super(x,y)
         this.x = x;
         this.y = y;
         this.energy = 6;
@@ -35,7 +34,20 @@ class Predator extends LivingCreature  {
         return found;
     }
 
-    
+    mul() {
+        var emptyCells = this.chooseCell(0);
+        var newCell = random(emptyCells);
+
+        if (newCell) {
+            var newX = newCell[0];
+            var newY = newCell[1];
+            matrix[newY][newX] = 3;
+
+            var newGrass1 = new Predator(newX, newY);
+            predatorArr.push(newGrass1);
+            this.energy = 8;
+        }
+    }
 
     move() {
         this.energy--
@@ -77,5 +89,13 @@ class Predator extends LivingCreature  {
             this.move()
         }
     }
-   
+    die() {
+        matrix[this.y][this.x] = 0;
+        for (var i in predatorArr) {
+            if (this.x == predatorArr[i].x && this.y == predatorArr[i].y) {
+                predatorArr.splice(i, 1);
+                break;
+            }
+        }
+    }
 }

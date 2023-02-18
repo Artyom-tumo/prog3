@@ -1,6 +1,5 @@
-class Bomb extends LivingCreature {
+class Bomb  {
     constructor(x, y) {
-        super(x,y)
         this.x = x;
         this.y = y;
 
@@ -33,7 +32,20 @@ class Bomb extends LivingCreature {
         return found;
     }
 
+    mul() {
+        var emptyCells = this.chooseCell(0);
+        var newCell = random(emptyCells);
 
+        if (newCell) {
+            var newX = newCell[0];
+            var newY = newCell[1];
+            matrix[newY][newX] = 4;
+
+            var newGrass = new Bomb(newX, newY);
+            bombArr.push(newGrass);
+
+        }
+    }
 
     eat() {
        
@@ -50,7 +62,7 @@ class Bomb extends LivingCreature {
                     for (var i in grassArr) {
                         if (x == grassArr[i].x && y == grassArr[i].y) {
                             grassArr.splice(i, 1);
-                            this.die(bombArr)
+                            this.die()
                             break;
                         }
                     }
@@ -63,7 +75,7 @@ class Bomb extends LivingCreature {
                     for (var i in grassEaterArr) {
                         if (x == grassEaterArr[i].x && y == grassEaterArr[i].y) {
                             grassEaterArr.splice(i, 1);
-                           this.die(bombArr)
+                           this.die()
                             break;
                         }
                     }
@@ -76,7 +88,7 @@ class Bomb extends LivingCreature {
                     for (var i in predatorArr) {
                         if (x == predatorArr[i].x && y == predatorArr[i].y) {
                             predatorArr.splice(i, 1);
-                          this.die(bombArr)
+                          this.die()
                             break;
                         }
                     }
@@ -88,6 +100,15 @@ class Bomb extends LivingCreature {
     
 
     }
-    
+    die() {
+        matrix[this.y][this.x] = 0;
+        for (var i in bombArr) {
+            if (this.x == bombArr[i].x && this.y == bombArr[i].y) {
+                bombArr.splice(i, 1);
+                break;
+            }
+
+        }
+    }
 
 }

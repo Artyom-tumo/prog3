@@ -1,6 +1,5 @@
-class Lazer extends LivingCreature  {
+class Lazer   {
     constructor(x, y) {
-        super(x,y)
         this.x = x;
         this.y = y;
 
