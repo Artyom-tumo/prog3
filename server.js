@@ -1,17 +1,29 @@
-var express = require("express");
+var express = require('express');
 
 var app = express();
 
+var server = require('http').createServer(app);
+
+var io = require('socket.io')(server);
+
+var messages = [];
+
 app.use(express.static("MY_papka"));
 
-app.get("/", function(req, res){
+app.get('/', function (req, res) {
 
-res.redirect("index.html");
+res.redirect('index.html');
 
 });
 
-app.listen(3000, function(){
+server.listen(3000);
 
-console.log("Example is running on port 3000");
 
+matrix = [1,2,3]
+
+io.on('connection', function(socket) {
+
+
+    socket.emit("display message", matrix);
+    
 });
