@@ -1,8 +1,12 @@
-class Bomb extends LivingCreature  {
+var LivingCreature = require("./living")
+module.exports = class Bomb extends LivingCreature  {
 
+    random(emptyCells) {
+        return emptyCells[Math.floor(Math.random() * emptyCells.length)]
+        }
     mul() {
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var newCell = this.random(emptyCells);
 
         if (newCell) {
             var newX = newCell[0];
