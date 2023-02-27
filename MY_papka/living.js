@@ -17,7 +17,9 @@ module.exports = class LivingCreature {
         ];
 
     }
-
+    random(emptyCells) {
+        return emptyCells[Math.floor(Math.random() * emptyCells.length)]
+        }
     chooseCell(ch) {
         var found = [];
         for (var i in this.directions) {
@@ -32,4 +34,5 @@ module.exports = class LivingCreature {
         return found;
     }
 }
+
 

@@ -1,5 +1,5 @@
 var LivingCreature = require("./living")
-module.exports = class Lazer extends LivingCreature  {
+module.exports = class Krak extends LivingCreature  {
     constructor(x, y) {
         super(x, y)
         this.x = x;
@@ -48,10 +48,10 @@ module.exports = class Lazer extends LivingCreature  {
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
-            matrix[newY][newX] = 4;
+            matrix[newY][newX] = 6;
 
-            var newGrass = new Lazer(newX, newY);
-            lazerArr.push(newGrass);
+            var newGrassi = new Krak(newX, newY);
+            krakArr.push(newGrassi);
 
         }
     }
@@ -70,6 +70,7 @@ module.exports = class Lazer extends LivingCreature  {
                     matrix[y][x] = 0
                     for (var i in grassArr) {
                         if (x == grassArr[i].x && y == grassArr[i].y) {
+                            grassArr.splice(i, 1);
                             grassArr[i].die()
                             break;
                         }
@@ -82,6 +83,7 @@ module.exports = class Lazer extends LivingCreature  {
                     matrix[y][x] = 0
                     for (var i in grassEaterArr) {
                         if (x == grassEaterArr[i].x && y == grassEaterArr[i].y) {
+                            grassEaterArr.splice(i, 1);
                             grassEaterArr[i].die()
                             break;
                         }
@@ -94,7 +96,8 @@ module.exports = class Lazer extends LivingCreature  {
                     matrix[y][x] = 0
                     for (var i in predatorArr) {
                         if (x == predatorArr[i].x && y == predatorArr[i].y) {
-                            predatorArr[i].die()
+                            predatorArr.splice(i, 1);
+                           predatorArr[i].die()
                             break;
                         }
                     }
@@ -108,13 +111,13 @@ module.exports = class Lazer extends LivingCreature  {
     }
     die() {
         matrix[this.y][this.x] = 0;
-        for (var i in lazerArr) {
-            if (this.x == lazerArr[i].x && this.y ==lazerArr[i].y) {
-                lazerArr.splice(i, 1);
+        for (var i in krakArr) {
+            if (this.x == krakArr[i].x && this.y ==krakArr[i].y) {
+                krakArr.splice(i, 1);
                 break;
             }
 
         }
     }
-  
+
 }

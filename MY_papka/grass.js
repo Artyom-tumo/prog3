@@ -1,8 +1,6 @@
 var LivingCreature = require("./living")
 module.exports = class Grass extends LivingCreature {
-    random(emptyCells) {
-        return emptyCells[Math.floor(Math.random() * emptyCells.length)]
-        }
+    
     mul () {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
@@ -19,5 +17,13 @@ module.exports = class Grass extends LivingCreature {
             this.multiply = 0;
         }
     }
- 
+    die() {
+        matrix[this.y][this.x] = 0;
+        for (var i in grassArr) {
+            if (this.x == grassArr[i].x && this.y == grassArr[i].y) {
+                grassArr.splice(i, 1);
+                break;
+            }
+        }
+    }
 }

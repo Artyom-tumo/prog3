@@ -8,12 +8,8 @@ var side = 50;
 
 
 function setup() {
-    frameRate(5);
     createCanvas(3000, 3000);
     background('#acacac');
-
-    
-
 }
 
 function drawing(matrix) {
@@ -35,6 +31,8 @@ function drawing(matrix) {
                 fill("black")
             } else if (matrix[y][x] == 5) {
                 fill("purple")
+            }else if (matrix[y][x]==6){
+                fill("red")
             }
             rect(x * side, y * side, side, side);
 

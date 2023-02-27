@@ -20,9 +20,8 @@ module.exports = class Predator extends LivingCreature{
         ];
 
     }
-    random(emptyCells) {
-        return emptyCells[Math.floor(Math.random() * emptyCells.length)]
-        }
+   
+
 
     mul() {
         var emptyCells = this.chooseCell(0);

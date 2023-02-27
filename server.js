@@ -96,6 +96,7 @@ function game(){
     }
      for (let i in lazerArr) {
         lazerArr[i].eat()
+        lazerArr[i].die()
     }
 
 
@@ -104,7 +105,7 @@ function game(){
 
 
 }
-
+Krak = require('./MY_papka/krak')
 Grass = require('./MY_papka/grass')
 GrassEater = require('./MY_papka/grassEater')
 Predator = require('./MY_papka/predaot')
@@ -137,4 +138,4 @@ for (var y = 0; y < matrix.length; y++) {
 
 
 
-setInterval(game, 500)
+setInterval(game, 2000)
