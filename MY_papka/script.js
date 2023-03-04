@@ -5,6 +5,15 @@ var side = 50;
 
  
 // let matrix = generateMatrix(15, 350, 30, 12, 5, 15)
+const button = document.getElementById("win")
+const button2 = document.getElementById("sum")
+
+button.addEventListener('click', ()=>{
+    document.body.style.backgroundColor ='#000000'
+});
+button2.addEventListener('click', ()=>{
+    document.body.style.backgroundColor ='#ff4d4d'
+});
 
 
 function setup() {

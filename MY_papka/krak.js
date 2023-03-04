@@ -59,65 +59,45 @@ module.exports = class Krak extends LivingCreature  {
     eat() {
        
 
-        for (var i in this.directions) {
-            var x = this.directions[i][0];
-            var y = this.directions[i][1];
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-            
-                if (matrix[y][x] == 1) {
-                    console.log('aloooo');
-                    
-                    matrix[y][x] = 0
-                    for (var i in grassArr) {
-                        if (x == grassArr[i].x && y == grassArr[i].y) {
-                            grassArr.splice(i, 1);
-                            grassArr[i].die()
-                            break;
-                        }
+        if (this.x >= 0 && this.x < matrix[0].length && this.y >= 0 && this.y < matrix.length) {
+
+            this.x++
+            if (matrix[this.y][this.x] == 1) {
+                for (var i in grassArr) {
+                    if (this.x == grassArr[i].x && this.y == grassArr[i].y) {
+                        grassArr.splice(i, 1);
+                        break;
                     }
                 }
-
-                if (matrix[y][x] == 2) {
-                    console.log('aloooo');
-                    
-                    matrix[y][x] = 0
-                    for (var i in grassEaterArr) {
-                        if (x == grassEaterArr[i].x && y == grassEaterArr[i].y) {
-                            grassEaterArr.splice(i, 1);
-                            grassEaterArr[i].die()
-                            break;
-                        }
+            } else if (matrix[this.y][this.x] == 2) {
+                for (var i in grassEaterArr) {
+                    if (this.x == grassEaterArr[i].x && this.y == grassEaterArr[i].y) {
+                        grassEaterArr.splice(i, 1);
+                        break;
                     }
                 }
-
-                if (matrix[y][x] == 3) {
-                    console.log('aloooo');
-                    
-                    matrix[y][x] = 0
-                    for (var i in predatorArr) {
-                        if (x == predatorArr[i].x && y == predatorArr[i].y) {
-                            predatorArr.splice(i, 1);
-                           predatorArr[i].die()
-                            break;
-                        }
+            }else if (matrix[this.y][this.x] == 3) {
+                for (var i in predaotArr) {
+                    if (this.x == predatorArr[i].x && this.y == predatorArr[i].y) {
+                        predatorArr.splice(i, 1);
+                        break;
                     }
                 }
             }
+
+
+            matrix[this.y][this.x] = 5
+
         }
     
 
     
 
     }
-    die() {
-        matrix[this.y][this.x] = 0;
-        for (var i in krakArr) {
-            if (this.x == krakArr[i].x && this.y ==krakArr[i].y) {
-                krakArr.splice(i, 1);
-                break;
-            }
-
-        }
+    die(x, canvasWidth, eatWidth, ctx) {
+      if(x+ eatWidth >= canvasWidth){
+          ctx.clearRect(0, 0 , canvasWidth, canvas.height)
+      }
     }
 
 }

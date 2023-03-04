@@ -138,4 +138,4 @@ for (var y = 0; y < matrix.length; y++) {
 
 
 
-setInterval(game, 2000)
+setInterval(game, 500)
